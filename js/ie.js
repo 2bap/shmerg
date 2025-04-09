@@ -3,7 +3,6 @@
             e.preventDefault();
         }, false);
 
-        // prevent f12
         document.onkeydown = function(e) {
             if (event.keyCode == 123) {
                 return false;
@@ -25,7 +24,6 @@
             }
         }
 
-        // prevent dragging/selecting
         document.addEventListener("dragstart", function(e) {
             e.preventDefault();
         }, false);
